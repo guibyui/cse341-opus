@@ -1,0 +1,24 @@
+<?xml version="1.0" encoding="UTF-8" standalone="no"?>
+<!DOCTYPE svg PUBLIC "-//W3C//DTD SVG 1.1//EN" "http://www.w3.org/Graphics/SVG/1.1/DTD/svg11.dtd">
+<svg viewBox="0 0 250 100" version="1.1" xmlns="http://www.w3.org/2000/svg" xmlns:xlink="http://www.w3.org/1999/xlink" xml:space="preserve" xmlns:serif="http://www.serif.com/" style="fill-rule:evenodd;clip-rule:evenodd;stroke-linecap:square;stroke-miterlimit:1.5;">
+    <g id="logo-bot" transform="matrix(1,0,0,1,0,4.5)">
+        <path d="M20,80L230,80"/>
+    </g>
+    <g id="letters">
+        <g id="letter-o" transform="matrix(1,0,0,1,10.4293,0.577054)">
+            <path d="M54,42C34.544,93.615 95.728,60.544 66,46"/>
+        </g>
+        <g id="letter-p" transform="matrix(1,0,0,1,11.2652,5.36194)">
+            <path d="M97,50C134.963,56.074 75.875,-0.35 91,65.112"/>
+        </g>
+        <g id="letter-u" transform="matrix(1,0,0,1,11.3666,2.59607)">
+            <path d="M125,42C122.667,73.718 148.333,79.181 148,42"/>
+        </g>
+        <g id="letter-s" transform="matrix(1,0,0,1,5.44617,2.59607)">
+            <path d="M184,42C139.114,43.537 213.008,65.59 170,67.878"/>
+        </g>
+    </g>
+    <g id="logo-top" transform="matrix(1,0,0,1,0,4.5)">
+        <path d="M20,35L125,11L230,35"/>
+    </g>
+</svg>

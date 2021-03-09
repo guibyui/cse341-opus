@@ -8,15 +8,15 @@ const isAuth = require('../middleware/is-auth');
 
 const router = express.Router();
 
-// /admin/add-product => GET
-router.get('/add-product', isAuth, adminController.getAddProduct);
+// /admin/add-book => GET
+router.get('/add-book', isAuth, adminController.getAddBook);
 
-// /admin/products => GET
-router.get('/products', isAuth, adminController.getProducts);
+// /admin/books => GET
+router.get('/books', isAuth, adminController.getBooks);
 
-// /admin/add-product => POST
+// /admin/add-book => POST
 router.post(
-  '/add-product',
+  '/add-book',
   [
     body('title')
       .isString()
@@ -28,13 +28,13 @@ router.post(
       .trim()
   ],
   isAuth,
-  adminController.postAddProduct
+  adminController.postAddBook
 );
 
-router.get('/edit-product/:productId', isAuth, adminController.getEditProduct);
+router.get('/edit-book/:bookId', isAuth, adminController.getEditBook);
 
 router.post(
-  '/edit-product',
+  '/edit-book',
   [
     body('title')
       .isString()
@@ -46,9 +46,9 @@ router.post(
       .trim()
   ],
   isAuth,
-  adminController.postEditProduct
+  adminController.postEditBook
 );
 
-router.post('/delete-product', isAuth, adminController.postDeleteProduct);
+router.post('/delete-book', isAuth, adminController.postDeleteBook);
 
 module.exports = router;

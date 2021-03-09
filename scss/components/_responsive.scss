@@ -1,0 +1,91 @@
+@use '../abstracts'as *;
+
+@include media-md {
+    body {
+        width: 90%;
+        margin: 2rem auto 0 auto;
+    }
+
+    .header {
+        padding-top: 0.5rem;
+        justify-content: space-between;
+        border-radius: 10px 10px 0 0;
+
+        &-login__list {
+            position: relative;
+            list-style: none;
+        }
+    }
+
+    #logo {
+        padding: 0.5rem;
+    }
+
+    .nav {
+        display: flex;
+
+        // background: $primary-color;
+        min-height: 2rem;
+
+        &-btn {
+            display: none;
+        }
+
+        &__list {
+            display: flex;
+            justify-content: center;
+            align-items: flex-end;
+            flex-direction: row;
+            width: 100%;
+            list-style: none;
+            min-height: 2.5rem;
+            padding-bottom: 1.5rem;
+            border-radius: 0 0 10px 10px;
+            background-image: linear-gradient($primary-color 2.5rem, $secondary-color 1.5rem);
+
+            &-item {
+                white-space: nowrap;
+
+                &.active,
+                &:hover,
+                &:active {
+                    border-radius: 10px 10px 0 0;
+
+                    & a {
+                        color: $primary-white;
+                    }
+                }
+
+                & a {
+                    font-size: $normal-font;
+                    padding: 0 0.5rem;
+                }
+            }
+        }
+    }
+
+    .footer {
+        grid-template-columns: auto auto auto;
+        border-radius: 10px;
+        margin-bottom: 2rem;
+    }
+
+    .login {
+        max-width: 70%;
+    }
+}
+
+@include media-lg {
+    .nav {
+
+        &__list {
+
+            &-item {
+
+                & a {
+                    font-size: $large-font;
+                }
+            }
+        }
+    }
+}

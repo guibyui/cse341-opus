@@ -1,0 +1,21 @@
+@use '../abstracts'as *;
+
+#logo {
+    width: 9rem;
+    height: auto;
+    fill-rule: evenodd;
+    clip-rule: evenodd;
+    stroke-linecap: square;
+    stroke-miterlimit: 1.5;
+
+    &-bot,
+    &-o,
+    &-p,
+    &-u,
+    &-s,
+    &-top {
+        fill: none;
+        stroke: $primary-black;
+        stroke-width: 10px;
+    }
+}

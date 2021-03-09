@@ -1,0 +1,60 @@
+@use '../abstracts'as *;
+
+.btn {
+    display: inline-block;
+    padding: 0.25rem 1rem;
+    text-decoration: none;
+    font: inherit;
+    border: 2px solid $secondary-black;
+    color: $primary-black;
+    background: $secondary-white;
+    border-radius: 3px;
+    cursor: pointer;
+
+    &:hover,
+    &:active {
+        background-color: $secondary-black;
+        color: $primary-white;
+    }
+}
+
+.btn.danger {
+    color: red;
+    border-color: red;
+}
+
+.btn.danger:hover,
+.btn.danger:active {
+    background: red;
+    color: white;
+}
+
+.user-message {
+    margin: 1rem auto;
+    width: 20rem;
+    max-width: 90%;
+    border: 1px solid #4771fa;
+    padding: 0.5rem;
+    border-radius: 3px;
+    background: #b9c9ff;
+    text-align: center;
+}
+
+.user-message--error {
+    border-color: red;
+    background: rgb(255, 176, 176);
+    color: red;
+}
+
+.error {
+    display: flex;
+    flex-direction: column;
+    justify-content: center;
+    text-align: center;
+    align-items: center;
+    margin: 1rem auto;
+    padding: 1rem;
+    background: $secondary-white;
+    border-radius: 0.5rem;
+    width: 70%;
+}

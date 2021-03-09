@@ -1,0 +1,5 @@
+<form action="/tote" method="post">
+    <input type="hidden" name="_csrf" value="<%= csrfToken %>">
+    <button class="btn" type="submit">Add to Tote</button>
+    <input type="hidden" name="bookId" value="<%= book._id %>">
+</form>

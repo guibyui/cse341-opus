@@ -1,18 +1,17 @@
 <%- include('../includes/head.ejs') %>
-    <link rel="stylesheet" href="/css/cart.css">
     </head>
 
     <body>
         <%- include('../includes/navigation.ejs') %>
         <main>
-            <% if (products.length > 0) { %>
-                <ul class="cart__item-list">
-                    <% products.forEach(p => { %>
-                        <li class="cart__item">
-                            <h1><%= p.productId.title %></h1>
+            <% if (books.length > 0) { %>
+                <ul class="tote__list">
+                    <% books.forEach(p => { %>
+                        <li class="tote__list-item">
+                            <h1><%= p.bookId.title %></h1>
                             <h2>Quantity: <%= p.quantity %></h2>
-                            <form action="/cart-delete-item" method="POST">
-                                <input type="hidden" value="<%= p.productId._id %>" name="productId">
+                            <form action="/tote-delete-item" method="POST">
+                                <input type="hidden" value="<%= p.bookId._id %>" name="bookId">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
                                 <button class="btn danger" type="submit">Delete</button>
                             </form>
@@ -28,7 +27,7 @@
                 </div>
                 
             <% } else { %>
-                <h1>No Products in Cart!</h1>
+                <h1>No Books in Tote!</h1>
             <% } %>
         </main>
         <%- include('../includes/end.ejs') %>

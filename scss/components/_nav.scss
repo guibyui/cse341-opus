@@ -1,0 +1,99 @@
+@use '../abstracts'as *;
+
+.nav {
+    display: none;
+
+    &-btn {
+        position: absolute;
+        z-index: 1;
+        left: 1rem;
+        top: 1rem;
+        height: 20px;
+        width: 28px;
+        cursor: pointer;
+
+        &__burger {
+            position: absolute;
+            right: 0;
+            top: 0.5rem;
+            height: 3px;
+            width: 28px;
+            background: $primary-white;
+            @include transition-ease;
+
+            &::before {
+                content: '';
+                position: absolute;
+                top: -8px;
+                height: 3px;
+                width: 28px;
+                background: $primary-white;
+                @include transition-ease;
+            }
+
+            &::after {
+                content: '';
+                position: absolute;
+                top: 8px;
+                height: 3px;
+                width: 20px;
+                background: $primary-white;
+                @include transition-ease;
+            }
+
+            &.open {
+                transform: rotate(180deg);
+                background: transparent;
+
+                &::before {
+                    transform: rotate(45deg) translate(5px, 8px);
+                }
+
+                &::after {
+                    width: 28px;
+                    transform: rotate(-45deg) translate(3px, -7px);
+                }
+            }
+        }
+    }
+
+    &.open {
+        width: 100%;
+        height: auto;
+        display: flex;
+        align-items: center;
+    }
+
+    &__list {
+        display: flex;
+        flex-direction: column;
+        gap: 0.5rem;
+        background: $primary-color;
+        width: 100%;
+        list-style: none;
+
+        &-item {
+            padding-top: 0.5rem;
+            white-space: nowrap;
+
+            &.active,
+            &:hover,
+            &:active {
+                background: $secondary-color;
+                @include transition-ease;
+
+                & a {
+                    color: $primary-white;
+                }
+            }
+
+            & a {
+                font-size: $large-font;
+                width: 100%;
+                text-decoration: none;
+                color: $secondary-black;
+                cursor: pointer;
+            }
+        }
+    }
+}

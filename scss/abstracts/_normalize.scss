@@ -1,0 +1,35 @@
+@use './variables'as *;
+
+body {
+    font-family: $font;
+    font-weight: 400;
+    background: $primary-white;
+}
+
+* {
+    margin: 0;
+    padding: 0;
+    color: $primary-black;
+}
+
+main {
+    width: 96%;
+    margin: 2rem auto;
+}
+
+h1,
+h2,
+h3,
+h4,
+h5,
+h6 {
+    font-weight: 700;
+}
+
+ul {
+    list-style: none;
+}
+
+a {
+    text-decoration: none;
+}

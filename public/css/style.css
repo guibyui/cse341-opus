@@ -429,7 +429,7 @@ a {
 
 @media screen and (min-width: 40rem) {
   body {
-    width: 90%;
+    width: 60%;
     margin: 2rem auto 0 auto;
   }
 
@@ -481,13 +481,13 @@ a {
   }
 
   .footer {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     border-radius: 10px;
     margin-bottom: 2rem;
   }
 
   .login {
-    max-width: 70%;
+    max-width: 30%;
   }
 }
 @media screen and (min-width: 50rem) {

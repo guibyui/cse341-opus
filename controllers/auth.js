@@ -4,15 +4,14 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 const User = require('../models/user');
+const nodemailer = require('nodemailer');
+const sendgridTransport = require('nodemailer-sendgrid-transport');
 
-// const transporter = nodemailer.createTransport(
-//   sendgridTransport({
-//     auth: {
-//       api_key:
-//         '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'
-//     }
-//   })
-// );
+const transporter = nodemailer.createTransport(sendgridTransport({
+  auth: {
+    api_key: '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'
+  }
+}));
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash('error');
@@ -150,13 +149,21 @@ exports.postSignup = (req, res, next) => {
       return user.save();
     })
     .then(result => {
+      const mailOptions = {
+        from: 'tripplee@gmail.com',
+        to: email,
+        subject: 'Signup Successful!',
+        html: '<h1>You have successfully signed up!</h1>'
+      };
+      
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
       res.redirect('/login');
-      // return transporter.sendMail({
-      //   to: email,
-      //   from: 'shop@node-complete.com',
-      //   subject: 'Signup succeeded!',
-      //   html: '<h1>You successfully signed up!</h1>'
-      // });
     })
     .catch(err => {
       const error = new Error(err);

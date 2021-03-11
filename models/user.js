@@ -5,11 +5,11 @@ const Schema = mongoose.Schema;
 const userSchema = new Schema({
   email: {
     type: String,
-    required: true
+    required: true,
   },
   password: {
     type: String,
-    required: true
+    required: true,
   },
   resetToken: String,
   resetTokenExpiration: Date,
@@ -18,13 +18,18 @@ const userSchema = new Schema({
       {
         bookId: {
           type: Schema.Types.ObjectId,
-          ref: 'Book',
-          required: true
+          ref: "Book",
+          required: true,
         },
-        quantity: { type: Number, required: true }
-      }
-    ]
-  }
+        quantity: { type: Number, required: true },
+      },
+    ],
+  },
+  level: {
+    type: Boolean,
+    ofBoolean: [true, false],
+    default: false,
+  },
 });
 
 userSchema.methods.addToTote = function(book) {

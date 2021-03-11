@@ -7,13 +7,17 @@ const bookSchema = new Schema({
     type: String,
     required: true
   },
-  price: {
-    type: Number,
+  author: {
+    type: String,
     required: true
   },
   description: {
     type: String,
     required: true
+  },
+  pageCount: {
+    type: Number,
+    required: false
   },
   imageUrl: {
     type: String,

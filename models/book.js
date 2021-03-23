@@ -15,12 +15,22 @@ const bookSchema = new Schema({
     type: String,
     required: true
   },
+  genre: [
+    {
+      type: String,
+      required: true
+    }
+  ],
   pageCount: {
     type: Number,
     required: false
   },
   imageUrl: {
     type: String,
+    required: true
+  },
+  inStock: {
+    type: Number,
     required: true
   },
   userId: {

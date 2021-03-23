@@ -19,9 +19,12 @@ exports.getAddBook = (req, res, next) => {
 
 exports.postAddBook = (req, res, next) => {
   const title = req.body.title;
-  const image = req.file;
-  const price = req.body.price;
+  const author = req.body.author;
   const description = req.body.description;
+  const genre = req.body.genre;
+  const pageCount = req.body.pageCount;
+  const image = req.file;
+  const inStock = req.body.inStock;
   if (!image) {
     return res.status(422).render('admin/edit-book', {
       pageTitle: 'Add Book',
@@ -29,9 +32,13 @@ exports.postAddBook = (req, res, next) => {
       editing: false,
       hasError: true,
       book: {
-        title: title,
-        price: price,
-        description: description
+        title,
+        author,
+        description,
+        genre,
+        pageCount,
+        image,
+        inStock
       },
       errorMessage: 'Attached file is not an image.',
       validationErrors: []
@@ -47,9 +54,12 @@ exports.postAddBook = (req, res, next) => {
       editing: false,
       hasError: true,
       book: {
-        title: title,
-        price: price,
-        description: description
+        title,
+        author,
+        description,
+        genre,
+        pageCount,
+        inStock
       },
       errorMessage: errors.array()[0].msg,
       validationErrors: errors.array()
@@ -59,10 +69,13 @@ exports.postAddBook = (req, res, next) => {
   const imageUrl = image.path;
 
   const book = new Book({
-    title: title,
-    price: price,
-    description: description,
-    imageUrl: imageUrl,
+    title,
+    author,
+    description,
+    genre,
+    pageCount,
+    image,
+    inStock,
     userId: req.user
   });
   book

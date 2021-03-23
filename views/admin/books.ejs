@@ -14,17 +14,15 @@
                                     <h1 class="book__title">
                                         <%= book.title %>
                                     </h1>
+                                    <h2 class="book__author">
+                                        <%= book.author %>
+                                    </h2>
                                 </header>
+                                <div class="card__genre">
+                                    <%= book.genre %>
+                                </div>
                                 <div class="card__image">
                                     <img src="/<%= book.imageUrl %>" alt="<%= book.title %>">
-                                </div>
-                                <div class="card__content">
-                                    <h2 class="book__price">$
-                                        <%= book.price %>
-                                    </h2>
-                                    <p class="book__description">
-                                        <%= book.description %>
-                                    </p>
                                 </div>
                                 <div class="card__actions">
                                     <a href="/admin/edit-book/<%= book._id %>?edit=true" class="btn">Edit</a>

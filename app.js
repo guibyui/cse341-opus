@@ -14,8 +14,7 @@ const PORT = process.env.PORT || 3000;
 
 const errorController = require('./controllers/error');
 const User = require('./models/user');
-
-const MONGODB_URI = process.env.MONGODB_URI;
+const MONGODB_URI = 'mongodb://genericUser:ZUQvSflIRHkgVLta@opus-shard-00-00.gfkhs.mongodb.net:27017,opus-shard-00-01.gfkhs.mongodb.net:27017,opus-shard-00-02.gfkhs.mongodb.net:27017/test?ssl=true&replicaSet=ClusterMasjeed1-shard-0&authSource=admin&retryWrites=true';
 
 const app = express();
 const store = new MongoDBStore({

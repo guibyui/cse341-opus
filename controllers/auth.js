@@ -4,14 +4,14 @@ const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
 
 const User = require('../models/user');
-const nodemailer = require('nodemailer');
-const sendgridTransport = require('nodemailer-sendgrid-transport');
+// const nodemailer = require('nodemailer');
+// const sendgridTransport = require('nodemailer-sendgrid-transport');
 
-const transporter = nodemailer.createTransport(sendgridTransport({
-  auth: {
-    api_key: process.env.SENDGRID_API_KEY
-  }
-}));
+// const transporter = nodemailer.createTransport(sendgridTransport({
+//   auth: {
+//     api_key: process.env.SENDGRID_API_KEY
+//   }
+// }));
 
 exports.getLogin = (req, res, next) => {
   let message = req.flash('error');
@@ -157,13 +157,13 @@ exports.postSignup = (req, res, next) => {
         html: '<h1>You have successfully signed up!</h1>'
       };
       
-      transporter.sendMail(mailOptions, function(error, info){
-        if (error) {
-          console.log(error);
-        } else {
-          console.log('Email sent: ' + info.response);
-        }
-      });
+      // transporter.sendMail(mailOptions, function(error, info){
+      //   if (error) {
+      //     console.log(error);
+      //   } else {
+      //     console.log('Email sent: ' + info.response);
+      //   }
+      // });
       res.redirect('/login');
     })
     .catch(err => {

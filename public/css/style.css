@@ -60,16 +60,6 @@ a {
   right: 1.5rem;
   list-style: none;
 }
-.header-login__list:hover a {
-  color: #E7D7C1;
-}
-.header-login__list-item:hover button {
-  color: #E7D7C1;
-}
-.header-login__list-item button {
-  background: transparent;
-  border: none;
-}
 
 .nav {
   display: none;
@@ -172,74 +162,206 @@ a {
   color: #362A1B;
 }
 
-.card {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  border-radius: 0.5rem;
-  background: #C7AE91;
-}
-.card__header {
-  padding: 1rem;
-  background: #1B150E;
-  border-radius: 0.5rem 0.5rem 0 0;
-  box-shadow: 0 5px 10px rgba(0, 0, 0, 0.26);
-}
-.card__header h1 {
-  margin: 0;
-  color: #E7D7C1;
-}
-.card__content {
-  padding: 1rem;
-  color: #1B150E;
-}
-.card__content h2 {
-  color: #1B150E;
-  margin: 0;
-}
-.card__content p {
-  color: #362A1B;
-  margin: 0;
-  font-size: smaller;
-}
-.card__image {
+.grid {
   width: 100%;
-}
-.card__image img {
-  width: 100%;
-}
-.card__actions {
-  padding: 1rem;
-  text-align: center;
-  padding: 1rem;
-  color: #1B150E;
-}
-.card__actions button,
-.card__actions a {
-  margin: 0 0.25rem;
-  border: 2px solid #1B150E;
-}
-
-.book-item {
-  width: 20rem;
-  max-width: 95%;
-  margin: 1rem;
-}
-.book__title {
-  font-size: 1.2rem;
-  text-align: center;
-}
-.book__price {
-  text-align: center;
-  color: #4d4d4d;
-  margin-bottom: 0.5rem;
-}
-.book__description {
-  text-align: center;
-}
-.book-detail {
+  height: auto;
   display: flex;
   justify-content: center;
+  flex-wrap: wrap;
+  gap: 2rem;
 }
 
+.card {
+  margin-top: 1rem;
+  width: 200px;
+  height: 400px;
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: space-between;
+}
+
+.actions {
+  width: 100%;
+  display: flex;
+  justify-content: space-between;
+}
+
+.book {
+  position: relative;
+  width: 200px;
+  height: 300px;
+  border-radius: 0 0.5rem 0.5rem 0;
+  box-shadow: 1rem 1rem 1rem 0 rgba(0, 0, 0, 0.6);
+  transition: transform 0.5s ease-in-out, box-shadow 0.35s ease-in-out;
+}
+
+.page1,
+.page2 {
+  background: #efefef;
+}
+
+.page3,
+.page4 {
+  background: #f5f5f5;
+}
+
+.page5 {
+  background: #fafafa;
+}
+
+.page6 {
+  background: #fdfdfd;
+}
+
+.front,
+.back {
+  position: absolute;
+  top: 0;
+  left: 0;
+  width: 200px;
+  height: 300px;
+  border-radius: 0 0.5rem 0.5rem 0;
+  transform-origin: left center;
+  transition: transform 0.5s ease-in-out, box-shadow 0.35s ease-in-out;
+}
+
+.page1,
+.page2,
+.page3,
+.page4,
+.page5,
+.page6 {
+  position: absolute;
+  top: 5px;
+  left: 0;
+  width: 195px;
+  height: 290px;
+  transform-origin: left center;
+  border-radius: 0 0.5rem 0.5rem 0;
+  transition: transform 0.5s ease-in-out, box-shadow 0.35s ease-in-out;
+}
+
+.front {
+  display: flex;
+  flex-direction: column;
+  align-items: center;
+}
+.front h1, .front h2 {
+  padding-top: 1rem;
+}
+
+@media screen and (min-width: 40rem) {
+  .card {
+    justify-content: center;
+    width: 400px;
+  }
+
+  .actions {
+    justify-content: space-around;
+  }
+
+  .book {
+    perspective: 1800px;
+    transform-style: preserve-3d;
+    cursor: pointer;
+    backface-visibility: visible;
+  }
+
+  .page3-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 185px;
+    height: 280px;
+    transform-origin: left center;
+    transform: rotateY(180deg) translateX(-200px);
+    transition: transform 0.5s ease-in-out;
+  }
+  .page3-info h1 {
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .page3-info p {
+    margin: 1rem;
+  }
+
+  .page4-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 185px;
+    height: 280px;
+    transform-origin: left center;
+    transition: transform 0.5s ease-in-out;
+  }
+  .page4-info h1 {
+    margin-top: 0.5rem;
+    text-align: center;
+  }
+  .page4-info p {
+    margin: 1rem;
+  }
+
+  .book:hover {
+    transform: translateX(100px);
+  }
+
+  .book:hover .front {
+    transform: rotateY(-170deg) scale(1.1);
+    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .book:hover .page1 {
+    transform: rotateY(-165deg) scale(1.1);
+    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .book:hover .page2 {
+    transform: rotateY(-15deg) scale(1.1);
+    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .book:hover .page3 {
+    transform: rotateY(-160deg) scale(1.1);
+    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .book:hover .page3-info {
+    position: absolute;
+    transform: rotateY(25deg) translateX(-200px) scale(1.1);
+  }
+
+  .book:hover .page4 {
+    transform: rotateY(-20deg) scale(1.1);
+    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .book:hover .page4-info {
+    position: absolute;
+    transform: rotateY(-25deg) scale(1.1);
+    transform-origin: left center;
+  }
+
+  .book:hover .page5 {
+    transform: rotateY(-155deg) scale(1.1);
+    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .book:hover .page6 {
+    transform: rotateY(-25deg) scale(1.1);
+    box-shadow: 0 1em 3em 0 rgba(0, 0, 0, 0.2);
+  }
+
+  .book:hover .back {
+    transform: rotateY(-10deg) scale(1.1);
+  }
+}
 .tote__list {
   list-style: none;
   margin: 0;
@@ -355,6 +477,10 @@ a {
 }
 
 .signup {
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  flex-direction: column;
   margin: 1rem auto;
   text-align: center;
 }
@@ -371,15 +497,19 @@ a {
 }
 
 .btn {
-  display: inline-block;
-  padding: 0.25rem 1rem;
+  display: flex;
+  justify-content: center;
+  align-items: center;
+  text-align: center;
   text-decoration: none;
-  font: inherit;
-  border: 2px solid #362A1B;
   color: #1B150E;
   background: #C7AE91;
-  border-radius: 3px;
+  width: 84px;
+  height: 42px;
+  border: none;
   cursor: pointer;
+  box-shadow: inset #362A1B 1px 1px 0 1px, inset #362A1B -1px -1px 0 1px;
+  border-radius: 3px;
 }
 .btn:hover, .btn:active {
   background-color: #362A1B;
@@ -429,7 +559,7 @@ a {
 
 @media screen and (min-width: 40rem) {
   body {
-    width: 60%;
+    width: 90%;
     margin: 2rem auto 0 auto;
   }
 
@@ -481,13 +611,13 @@ a {
   }
 
   .footer {
-    grid-template-columns: 1fr 1fr 1fr;
+    grid-template-columns: auto auto auto;
     border-radius: 10px;
     margin-bottom: 2rem;
   }
 
   .login {
-    max-width: 30%;
+    max-width: 70%;
   }
 }
 @media screen and (min-width: 50rem) {

@@ -20,31 +20,14 @@
                     id="title" 
                     value="<% if (editing || hasError) { %><%= book.title %><% } %>">
             </div>
-            <!-- <div class="form-control">
-                <label for="imageUrl">Image URL</label>
+            <div class="form-control">
+                <label for="author">Author</label>
                 <input 
-                    class="<%= validationErrors.find(e => e.param === 'imageUrl') ? 'invalid' : '' %>"
+                    class="<%= validationErrors.find(e => e.param === 'author') ? 'invalid' : '' %>"
                     type="text" 
-                    name="imageUrl" 
-                    id="imageUrl" 
-                    value="<% if (editing || hasError) { %><%= book.imageUrl %><% } %>">
-            </div> -->
-            <div class="form-control">
-                <label for="image">Image</label>
-                <input 
-                    type="file" 
-                    name="image" 
-                    id="image" >
-            </div>
-            <div class="form-control">
-                <label for="price">Price</label>
-                <input 
-                    class="<%= validationErrors.find(e => e.param === 'price') ? 'invalid' : '' %>"
-                    type="number" 
-                    name="price" 
-                    id="price" 
-                    step="0.01" 
-                    value="<% if (editing || hasError) { %><%= book.price %><% } %>">
+                    name="author" 
+                    id="author" 
+                    value="<% if (editing || hasError) { %><%= book.author %><% } %>">
             </div>
             <div class="form-control">
                 <label for="description">Description</label>
@@ -53,6 +36,42 @@
                     name="description" 
                     id="description" 
                     rows="5"><% if (editing || hasError) { %><%= book.description %><% } %></textarea>
+            </div>
+            <div class="form-control">
+                <label for="genre">Genre</label>
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'genre') ? 'invalid' : '' %>"
+                    type="text" 
+                    name="genre" 
+                    id="genre" 
+                    value="<% if (editing || hasError) { %><%= book.genre %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="pageCount">Page Count</label>
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'pageCount') ? 'invalid' : '' %>"
+                    type="number" 
+                    name="pageCount" 
+                    id="pageCount"
+                    value="<% if (editing || hasError) { %><%= book.pageCount %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="backgroundColor">backgroundColor</label>
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'backgroundColor') ? 'invalid' : '' %>"
+                    type="color" 
+                    name="backgroundColor" 
+                    id="backgroundColor" 
+                    value="<% if (editing || hasError) { %><%= book.backgroundColor %><% } %>">
+            </div>
+            <div class="form-control">
+                <label for="inStock">Stock</label>
+                <input 
+                    class="<%= validationErrors.find(e => e.param === 'inStock') ? 'invalid' : '' %>"
+                    type="number" 
+                    name="inStock" 
+                    id="inStock"
+                    value="<% if (editing || hasError) { %><%= book.inStock %><% } %>">
             </div>
             <% if (editing) { %>
                 <input type="hidden" value="<%= book._id %>" name="bookId">

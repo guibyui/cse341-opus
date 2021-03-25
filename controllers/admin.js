@@ -23,27 +23,9 @@ exports.postAddBook = (req, res, next) => {
   const description = req.body.description;
   const genre = req.body.genre;
   const pageCount = req.body.pageCount;
-  const image = req.file;
+  const backgroundColor = req.body.backgroundColor;
   const inStock = req.body.inStock;
-  if (!image) {
-    return res.status(422).render('admin/edit-book', {
-      pageTitle: 'Add Book',
-      path: '/admin/add-book',
-      editing: false,
-      hasError: true,
-      book: {
-        title,
-        author,
-        description,
-        genre,
-        pageCount,
-        image,
-        inStock
-      },
-      errorMessage: 'Attached file is not an image.',
-      validationErrors: []
-    });
-  }
+
   const errors = validationResult(req);
 
   if (!errors.isEmpty()) {
@@ -59,6 +41,7 @@ exports.postAddBook = (req, res, next) => {
         description,
         genre,
         pageCount,
+        backgroundColor,
         inStock
       },
       errorMessage: errors.array()[0].msg,
@@ -66,15 +49,13 @@ exports.postAddBook = (req, res, next) => {
     });
   }
 
-  const imageUrl = image.path;
-
   const book = new Book({
     title,
     author,
     description,
     genre,
     pageCount,
-    image,
+    backgroundColor,
     inStock,
     userId: req.user
   });
@@ -122,9 +103,13 @@ exports.getEditBook = (req, res, next) => {
 exports.postEditBook = (req, res, next) => {
   const prodId = req.body.bookId;
   const updatedTitle = req.body.title;
-  const updatedPrice = req.body.price;
-  const image = req.file;
-  const updatedDesc = req.body.description;
+  const updatedAuthor = req.body.author;
+  const updatedDescription = req.body.description;
+  const updatedGenre = req.body.genre;
+  const updatedpageCount = req.body.pageCount;
+  const updatedBackgroundColor = req.body.backgroundColor;
+  const updatedInStock = req.body.inStock;
+  
 
   const errors = validationResult(req);
 
@@ -136,14 +121,19 @@ exports.postEditBook = (req, res, next) => {
       hasError: true,
       book: {
         title: updatedTitle,
-        price: updatedPrice,
-        description: updatedDesc,
+        author: updatedAuthor,
+        description: updatedDescription,
+        genre: updatedGenre,
+        pageCount: updatedpageCount,
+        backgroundColor: updatedBackgroundColor,
+        inStock: updatedInStock,
         _id: prodId
       },
       errorMessage: errors.array()[0].msg,
       validationErrors: errors.array()
     });
   }
+  console.log(prodId)
 
   Book.findById(prodId)
     .then(book => {
@@ -151,12 +141,12 @@ exports.postEditBook = (req, res, next) => {
         return res.redirect('/');
       }
       book.title = updatedTitle;
-      book.price = updatedPrice;
-      book.description = updatedDesc;
-      if (image) {
-        fileHelper.deleteFile(book.imageUrl);
-        book.imageUrl = image.path;
-      }
+      book.author = updatedAuthor;
+      book.description = updatedDescription;
+      book.genre = updatedGenre;
+      book.pageCount = updatedpageCount;
+      book.backgroundColor = updatedBackgroundColor;
+      book.inStock = updatedInStock;
       return book.save().then(result => {
         console.log('UPDATED PRODUCT!');
         res.redirect('/admin/books');
@@ -172,7 +162,7 @@ exports.postEditBook = (req, res, next) => {
 exports.getBooks = (req, res, next) => {
   Book.find({ userId: req.user._id })
     .then(books => {
-      console.log(books);
+      // console.log(books);
       res.render('admin/books', {
         prods: books,
         pageTitle: 'Admin Books',
@@ -193,7 +183,6 @@ exports.postDeleteBook = (req, res, next) => {
       if (!book) {
         return next(new Error('Book not found.'));
       }
-      fileHelper.deleteFile(book.imageUrl);
       return Book.deleteOne({ _id: prodId, userId: req.user._id });
     })
     .then(() => {

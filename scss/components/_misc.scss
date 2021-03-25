@@ -1,15 +1,20 @@
 @use '../abstracts'as *;
 
 .btn {
-    display: inline-block;
-    padding: 0.25rem 1rem;
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    text-align: center;
     text-decoration: none;
-    font: inherit;
-    border: 2px solid $secondary-black;
     color: $primary-black;
     background: $secondary-white;
-    border-radius: 3px;
+    width: 84px;
+    height: 42px;
+    border: none;
     cursor: pointer;
+    box-shadow: inset $secondary-black 1px 1px 0 1px,
+        inset $secondary-black -1px -1px 0 1px;
+    border-radius: 3px;
 
     &:hover,
     &:active {

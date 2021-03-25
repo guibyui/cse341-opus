@@ -1,87 +1,271 @@
 @use '../abstracts'as *;
 
+.grid {
+    width: 100%;
+    height: auto;
+    display: flex;
+    justify-content: center;
+    flex-wrap: wrap;
+    gap: 2rem;
+}
+
 .card {
-    box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-    border-radius: 0.5rem;
-    background: $secondary-white;
+    margin-top: 1rem;
+    width: 200px;
+    height: 400px;
+    display: flex;
+    flex-wrap: wrap;
+    justify-content: space-between;
+}
 
-
-    &__header {
-        padding: 1rem;
-        background: $primary-black;
-
-        border-radius: 0.5rem 0.5rem 0 0;
-        box-shadow: 0 5px 10px rgba(0, 0, 0, 0.26);
-
-        h1 {
-            margin: 0;
-            color: $primary-white;
-        }
-    }
-
-    &__content {
-        padding: 1rem;
-        color: $primary-black;
-
-        h2 {
-            color: $primary-black;
-            margin: 0;
-        }
-
-        p {
-            color: $secondary-black;
-            margin: 0;
-            font-size: smaller;
-        }
-    }
-
-    &__image {
-        width: 100%;
-
-
-        img {
-            width: 100%;
-        }
-    }
-
-    &__actions {
-        padding: 1rem;
-        text-align: center;
-        padding: 1rem;
-        color: $primary-black;
-
-        button,
-        a {
-            margin: 0 0.25rem;
-            border: 2px solid $primary-black;
-        }
-    }
+.actions {
+    width: 100%;
+    display: flex;
+    justify-content: space-between;
 }
 
 .book {
-    &-item {
-        width: 20rem;
-        max-width: 95%;
-        margin: 1rem;
-    }
+    position: relative;
+    width: 200px;
+    height: 300px;
+    border-radius: 0 0.5rem 0.5rem 0;
+    box-shadow: 1rem 1rem 1rem 0 rgba(0, 0, 0, .6);
+    transition: transform .5s ease-in-out, box-shadow .35s ease-in-out;
+}
 
-    &__title {
-        font-size: 1.2rem;
-        text-align: center;
-    }
+.page1,
+.page2 {
+    background: #efefef;
+}
 
-    &__price {
-        text-align: center;
-        color: #4d4d4d;
-        margin-bottom: 0.5rem;
-    }
+.page3,
+.page4 {
+    background: #f5f5f5;
+}
 
-    &__description {
-        text-align: center;
-    }
 
-    &-detail {
-        display: flex;
-        justify-content: center;
+.page5 {
+    background: #fafafa;
+}
+
+.page6 {
+    background: #fdfdfd;
+}
+
+.front,
+.back {
+    position: absolute;
+    top: 0;
+    left: 0;
+    width: 200px;
+    height: 300px;
+    border-radius: 0 0.5rem 0.5rem 0;
+    transform-origin: left center;
+    transition: transform .5s ease-in-out, box-shadow .35s ease-in-out;
+}
+
+.page1,
+.page2,
+.page3,
+.page4,
+.page5,
+.page6 {
+    position: absolute;
+    top: 5px;
+    left: 0;
+    width: 195px;
+    height: 290px;
+    transform-origin: left center;
+    border-radius: 0 0.5rem 0.5rem 0;
+    transition: transform .5s ease-in-out, box-shadow .35s ease-in-out;
+}
+
+.front {
+    display: flex;
+    flex-direction: column;
+    align-items: center;
+
+    & h1,
+    & h2 {
+        padding-top: 1rem;
     }
 }
+
+@include media-md {
+
+    .card {
+        justify-content: center;
+        width: 400px;
+    }
+
+    .actions {
+        justify-content: space-around;
+    }
+
+    .book {
+        perspective: 1800px;
+        transform-style: preserve-3d;
+        cursor: pointer;
+        backface-visibility: visible;
+    }
+
+    .page3-info {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 185px;
+        height: 280px;
+        transform-origin: left center;
+        transform: rotateY(180deg) translateX(-200px);
+        transition: transform .5s ease-in-out;
+
+        & h1 {
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        & p {
+            margin: 1rem;
+        }
+    }
+
+    .page4-info {
+        display: flex;
+        flex-direction: column;
+        flex-wrap: wrap;
+        position: absolute;
+        top: 10px;
+        left: 0;
+        width: 185px;
+        height: 280px;
+        transform-origin: left center;
+        transition: transform .5s ease-in-out;
+
+        & h1 {
+            margin-top: 0.5rem;
+            text-align: center;
+        }
+
+        & p {
+            margin: 1rem;
+        }
+    }
+
+    .book:hover {
+        transform: translateX(100px);
+
+    }
+
+    .book:hover .front {
+        transform: rotateY(-170deg) scale(1.1);
+        box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
+    }
+
+    .book:hover .page1 {
+        transform: rotateY(-165deg) scale(1.1);
+        box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
+    }
+
+    .book:hover .page2 {
+        transform: rotateY(-15deg) scale(1.1);
+        box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
+    }
+
+    .book:hover .page3 {
+        transform: rotateY(-160deg) scale(1.1);
+        box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
+    }
+
+    .book:hover .page3-info {
+        position: absolute;
+        transform: rotateY(25deg) translateX(-200px) scale(1.1);
+    }
+
+    .book:hover .page4 {
+        transform: rotateY(-20deg) scale(1.1);
+        box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
+    }
+
+    .book:hover .page4-info {
+        position: absolute;
+        transform: rotateY(-25deg) scale(1.1);
+        transform-origin: left center;
+    }
+
+    .book:hover .page5 {
+        transform: rotateY(-155deg) scale(1.1);
+        box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
+    }
+
+    .book:hover .page6 {
+        transform: rotateY(-25deg) scale(1.1);
+        box-shadow: 0 1em 3em 0 rgba(0, 0, 0, .2);
+    }
+
+    .book:hover .back {
+        transform: rotateY(-10deg) scale(1.1);
+    }
+}
+
+
+// .book {
+//     
+//     margin: 1rem;
+//     
+//     position: relative;
+// width: 200px;
+// height: 300px;
+//     
+//     
+// }
+
+
+
+
+// .page4 {
+//     backface-visibility: hidden;
+// }
+
+// .front,
+// .back,
+// .page1,
+// .page2,
+// .page3,
+// .page4,
+// .page5,
+// .page6 {
+//     transform-style: preserve-3d;
+// position: absolute;
+// width: 200px;
+// height: 100%;
+// top: 0;
+// left: 0;
+//     transform-origin: left center;
+//     transition: transform .5s ease-in-out, box-shadow .35s ease-in-out;
+// }
+
+// .page3 p,
+// .page4 p {
+//     transition: transform .5s ease-in-out;
+// }
+
+
+
+// .front,
+// .page1,
+// .page3,
+// .page5 {
+//     border-bottom-right-radius: .5em;
+//     border-top-right-radius: .5em;
+// }
+
+// .back,
+// .page2,
+// .page4,
+// .page6 {
+//     border-bottom-right-radius: .5em;
+//     border-top-right-radius: .5em;
+// }

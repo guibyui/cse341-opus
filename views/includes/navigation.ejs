@@ -28,14 +28,14 @@
     </a>
     <ul class="header-login__list">
         <% if (!isAuthenticated) { %>
-            <li class="header-login__list-item btn">
-                <a class="<%= path === '/login' ? 'active' : '' %>" href="/login">Login</a>
+            <li class="header-login__list-item">
+                <a class="<%= path === '/login' ? 'active' : '' %> btn" href="/login">Login</a>
             </li>
         <% } else { %>
-            <li class="header-login__list-item btn">
+            <li class="header-login__list-item">
                 <form action="/logout" method="post">
                     <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                    <button type="submit">Logout</button>
+                    <button class="btn" type="submit">Logout</button>
                 </form>
             </li>
         <% } %>

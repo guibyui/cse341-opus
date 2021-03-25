@@ -12,21 +12,5 @@
         position: absolute;
         right: 1.5rem;
         list-style: none;
-
-        &:hover a {
-            color: $primary-white;
-        }
-
-        &-item {
-
-            &:hover button {
-                color: $primary-white;
-            }
-
-            & button {
-                background: transparent;
-                border: none;
-            }
-        }
     }
 }

@@ -2,16 +2,48 @@
     </head>
     <body>
         <%- include('../includes/navigation.ejs') %>
-        <main class="centered">
-            <h1><%= book.title %></h1>
-            <hr>
-            <div class="image">
-                <img src="/<%= book.imageUrl %>" alt="<%= book.title %>">
+        <main>
+            <div class="grid">
+                <section class="card">
+                    <acticle class="book">
+                        <div class="back" style="background: linear-gradient(90deg, black 0%, black 2%, <%= book.backgroundColor %> 3%, <%= book.backgroundColor %> 5%, black 7%, <%= book.backgroundColor %> 13%, <%= book.backgroundColor %> 100%);"></div>
+                        <div class="page6"></div>
+                        <div class="page5"></div>
+                        <div class="page4"></div>
+                        <div class="page4-info">
+                            <h1>Description:</h1>
+                            <p>
+                                <%= book.description %>
+                            </p>
+                        </div>
+                        <div class="page3"></div>
+                        <div class="page3-info">
+                            <h1>Genre:</h1>
+                            <p>
+                                <%= book.genre %>
+                            </p>
+                            <h1>Page Count:</h1>
+                            <p>
+                                <%= book.pageCount %>
+                            </p>
+                        </div>
+                        <div class="page2"></div>
+                        <div class="page1"></div>
+                        <div class="front" style="background: linear-gradient(90deg, black 0%, black 2%, <%= book.backgroundColor %> 3%, <%= book.backgroundColor %> 5%, black 7%, <%= book.backgroundColor %> 13%, <%= book.backgroundColor %> 100%);"> 
+                            <h1 class="book__title">
+                                <%= book.title %>
+                            </h1>
+                            <h2 class="book__author">
+                                <%= book.author %>
+                            </h2>
+                        </div>
+                    </acticle>
+                    <div class="actions">
+                        <% if (isAuthenticated) { %>
+                            <%- include('../includes/add-to-tote.ejs', {book: book}) %>
+                        <% } %>
+                    </div>
+                </section>
             </div>
-            <h2><%= book.price %></h2>
-            <p><%= book.description %></p>
-            <% if (isAuthenticated) { %>
-                <%- include('../includes/add-to-tote.ejs', {book: book}) %>
-            <% } %>
         </main>
         <%- include('../includes/end.ejs') %>

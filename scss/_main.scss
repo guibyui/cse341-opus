@@ -40,28 +40,3 @@ form {
 .image img {
     height: 100%;
 }
-
-
-
-
-
-
-.pagination {
-    margin-top: 2rem;
-    text-align: right;
-
-    a {
-        text-decoration: none;
-        color: $primary-color;
-        background: $primary-white;
-        padding: 0.5rem;
-        margin: 0 0.5rem;
-
-        &:hover,
-        &:active,
-        &.active {
-            background: $primary-color;
-            color: $primary-white;
-        }
-    }
-}

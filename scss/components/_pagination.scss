@@ -1,0 +1,18 @@
+@use '../abstracts'as *;
+
+.pagination {
+    display: flex;
+    gap: 1rem;
+
+    .active {
+        background: $primary-color;
+        color: $primary-white;
+    }
+
+    & a {
+        &:hover {
+            background: $primary-color;
+            color: $primary-white;
+        }
+    }
+}

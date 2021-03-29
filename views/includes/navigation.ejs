@@ -29,7 +29,7 @@
     <ul class="header-login__list">
         <% if (!isAuthenticated) { %>
             <li class="header-login__list-item">
-                <a class="<%= path === '/login' ? 'active' : '' %> btn" href="/login">Login</a>
+                <a class="<%= path === '/login' ? 'active' : '' %> btn" id="main-login-btn" href="/login">Login</a>
             </li>
         <% } else { %>
             <li class="header-login__list-item">

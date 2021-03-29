@@ -504,7 +504,7 @@ a {
   text-decoration: none;
   color: #1B150E;
   background: #C7AE91;
-  width: 84px;
+  width: 113px;
   height: 42px;
   border: none;
   cursor: pointer;
@@ -525,6 +525,14 @@ a {
 .btn.danger:active {
   background: red;
   color: white;
+}
+
+#login-btn {
+  width: 100%;
+}
+
+#main-login-btn {
+  width: 70px;
 }
 
 .user-message {
@@ -611,13 +619,13 @@ a {
   }
 
   .footer {
-    grid-template-columns: auto auto auto;
+    grid-template-columns: 1fr 1fr 1fr;
     border-radius: 10px;
     margin-bottom: 2rem;
   }
 
   .login {
-    max-width: 70%;
+    max-width: 20%;
   }
 }
 @media screen and (min-width: 50rem) {

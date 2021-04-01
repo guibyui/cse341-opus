@@ -137,9 +137,6 @@ exports.postEditBook = (req, res, next) => {
 
   Book.findById(prodId)
     .then(book => {
-      if (book.userId.toString() !== req.user._id.toString()) {
-        return res.redirect('/');
-      }
       book.title = updatedTitle;
       book.author = updatedAuthor;
       book.description = updatedDescription;
@@ -160,7 +157,7 @@ exports.postEditBook = (req, res, next) => {
 };
 
 exports.getBooks = (req, res, next) => {
-  Book.find({ userId: req.user._id })
+  Book.find()
     .then(books => {
       // console.log(books);
       res.render('admin/books', {

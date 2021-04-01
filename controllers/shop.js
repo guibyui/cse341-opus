@@ -7,7 +7,7 @@ const PDFDocument = require('pdfkit');
 const Book = require('../models/book');
 const Order = require('../models/order');
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 10;
 
 exports.getBooks = (req, res, next) => {
   const page = +req.query.page || 1;
@@ -205,9 +205,11 @@ exports.getInvoice = (req, res, next) => {
       let totalPrice = 0;
       order.books.forEach(prod => {
         totalPrice += prod.quantity * prod.book.price;
+        let [month, date, year]    = new Date().toLocaleDateString("en-US").split("/")
         pdfDoc
           .fontSize(14)
           .text(
+            month + " " + date + " " + year + " " + 
             prod.book.title +
               ' - ' +
               prod.quantity +
@@ -220,20 +222,6 @@ exports.getInvoice = (req, res, next) => {
       pdfDoc.fontSize(20).text('Total Price: $' + totalPrice);
 
       pdfDoc.end();
-      // fs.readFile(invoicePath, (err, data) => {
-      //   if (err) {
-      //     return next(err);
-      //   }
-      //   res.setHeader('Content-Type', 'application/pdf');
-      //   res.setHeader(
-      //     'Content-Disposition',
-      //     'inline; filename="' + invoiceName + '"'
-      //   );
-      //   res.send(data);
-      // });
-      // const file = fs.createReadStream(invoicePath);
-
-      // file.pipe(res);
     })
     .catch(err => next(err));
 };

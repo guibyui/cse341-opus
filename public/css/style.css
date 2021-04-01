@@ -16,13 +16,6 @@ main {
   margin: 2rem auto;
 }
 
-#welcome {
-  text-align: center; 
-  background-image: url('/images/library.svg');
-  height: 200px;
-  background-repeat: repeat-x;
-}
-
 h1,
 h2,
 h3,
@@ -370,6 +363,13 @@ a {
     transform: rotateY(-10deg) scale(1.1);
   }
 }
+#welcome {
+  text-align: center;
+  background-image: url("/images/library.svg");
+  height: 200px;
+  background-repeat: repeat-x;
+}
+
 .tote__list {
   list-style: none;
   margin: 0;

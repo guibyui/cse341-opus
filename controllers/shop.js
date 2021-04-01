@@ -1,5 +1,6 @@
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
 
 const PDFDocument = require('pdfkit');
 
@@ -58,28 +59,18 @@ exports.getBook = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  const page = +req.query.page || 1;
-  let totalItems;
-
-  Book.find()
-    .countDocuments()
-    .then(numBooks => {
-      totalItems = numBooks;
-      return Book.find()
-        .skip((page - 1) * ITEMS_PER_PAGE)
-        .limit(ITEMS_PER_PAGE);
-    })
+  Book.find({
+    '_id': { $in: [
+        mongoose.Types.ObjectId('60620a97aa80c6a654b9bdd3'),
+        mongoose.Types.ObjectId('60653b133a4705487c55addc'), 
+        mongoose.Types.ObjectId('606539703a4705487c55addb')
+    ]}
+  })
     .then(books => {
       res.render('shop/index', {
         prods: books,
         pageTitle: 'Shop',
-        path: '/',
-        currentPage: page,
-        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
-        hasPreviousPage: page > 1,
-        nextPage: page + 1,
-        previousPage: page - 1,
-        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE)
+        path: '/'
       });
     })
     .catch(err => {

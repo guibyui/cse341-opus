@@ -64,6 +64,19 @@
     transition: transform .5s ease-in-out, box-shadow .35s ease-in-out;
 }
 
+.page3-info,
+.page4-info {
+    display: flex;
+    flex-direction: column;
+    flex-wrap: wrap;
+    position: absolute;
+    top: 10px;
+    left: 0;
+    width: 185px;
+    height: 280px;
+    transform-origin: left center;
+}
+
 .page1,
 .page2,
 .page3,
@@ -84,9 +97,12 @@
     display: flex;
     flex-direction: column;
     align-items: center;
+    text-align: center;
 
     & h1,
     & h2 {
+        width: 100%;
+        max-width: 150px;
         padding-top: 1rem;
     }
 }
@@ -110,15 +126,6 @@
     }
 
     .page3-info {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 185px;
-        height: 280px;
-        transform-origin: left center;
         transform: rotateY(180deg) translateX(-200px);
         transition: transform .5s ease-in-out;
 
@@ -128,29 +135,23 @@
         }
 
         & p {
-            margin: 1rem;
+            margin: 0.5rem 1rem;
         }
     }
 
     .page4-info {
-        display: flex;
-        flex-direction: column;
-        flex-wrap: wrap;
-        position: absolute;
-        top: 10px;
-        left: 0;
-        width: 185px;
-        height: 280px;
-        transform-origin: left center;
         transition: transform .5s ease-in-out;
 
         & h1 {
+            width: 100%;
             margin-top: 0.5rem;
             text-align: center;
         }
 
         & p {
-            margin: 1rem;
+            max-height: 212px;
+            overflow: hidden;
+            margin: 0.5rem 0 0.5rem 1rem;
         }
     }
 
@@ -210,6 +211,13 @@
     }
 }
 
+
+#welcome {
+    text-align: center;
+    background-image: url('/images/library.svg');
+    height: 200px;
+    background-repeat: repeat-x;
+}
 
 // .book {
 //     

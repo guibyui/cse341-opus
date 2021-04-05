@@ -65,13 +65,13 @@
     }
 
     .footer {
-        grid-template-columns: auto auto auto;
+        grid-template-columns: 1fr 1fr 1fr;
         border-radius: 10px;
         margin-bottom: 2rem;
     }
 
     .login {
-        max-width: 70%;
+        max-width: 20%;
     }
 }
 

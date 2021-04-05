@@ -1,2 +1,2 @@
 # cse341-opus
-# Erica, Sam, Gui
+# Eriqua, Sam, Gui

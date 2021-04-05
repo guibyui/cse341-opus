@@ -1,12 +1,13 @@
 const fs = require('fs');
 const path = require('path');
+const mongoose = require('mongoose');
 
 const PDFDocument = require('pdfkit');
 
 const Book = require('../models/book');
 const Order = require('../models/order');
 
-const ITEMS_PER_PAGE = 2;
+const ITEMS_PER_PAGE = 10;
 
 exports.getBooks = (req, res, next) => {
   const page = +req.query.page || 1;
@@ -58,28 +59,18 @@ exports.getBook = (req, res, next) => {
 };
 
 exports.getIndex = (req, res, next) => {
-  const page = +req.query.page || 1;
-  let totalItems;
-
-  Book.find()
-    .countDocuments()
-    .then(numBooks => {
-      totalItems = numBooks;
-      return Book.find()
-        .skip((page - 1) * ITEMS_PER_PAGE)
-        .limit(ITEMS_PER_PAGE);
-    })
+  Book.find({
+    '_id': { $in: [
+        mongoose.Types.ObjectId('60620a97aa80c6a654b9bdd3'),
+        mongoose.Types.ObjectId('60653b133a4705487c55addc'), 
+        mongoose.Types.ObjectId('606539703a4705487c55addb')
+    ]}
+  })
     .then(books => {
       res.render('shop/index', {
         prods: books,
         pageTitle: 'Shop',
-        path: '/',
-        currentPage: page,
-        hasNextPage: ITEMS_PER_PAGE * page < totalItems,
-        hasPreviousPage: page > 1,
-        nextPage: page + 1,
-        previousPage: page - 1,
-        lastPage: Math.ceil(totalItems / ITEMS_PER_PAGE)
+        path: '/'
       });
     })
     .catch(err => {
@@ -214,9 +205,11 @@ exports.getInvoice = (req, res, next) => {
       let totalPrice = 0;
       order.books.forEach(prod => {
         totalPrice += prod.quantity * prod.book.price;
+        let [month, date, year]    = new Date().toLocaleDateString("en-US").split("/")
         pdfDoc
           .fontSize(14)
           .text(
+            month + " " + date + " " + year + " " + 
             prod.book.title +
               ' - ' +
               prod.quantity +
@@ -229,20 +222,6 @@ exports.getInvoice = (req, res, next) => {
       pdfDoc.fontSize(20).text('Total Price: $' + totalPrice);
 
       pdfDoc.end();
-      // fs.readFile(invoicePath, (err, data) => {
-      //   if (err) {
-      //     return next(err);
-      //   }
-      //   res.setHeader('Content-Type', 'application/pdf');
-      //   res.setHeader(
-      //     'Content-Disposition',
-      //     'inline; filename="' + invoiceName + '"'
-      //   );
-      //   res.send(data);
-      // });
-      // const file = fs.createReadStream(invoicePath);
-
-      // file.pipe(res);
     })
     .catch(err => next(err));
 };

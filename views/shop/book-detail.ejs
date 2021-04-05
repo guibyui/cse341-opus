@@ -4,8 +4,7 @@
 <body>
     <%- include('../includes/navigation.ejs') %>
     <main>
-        <div
-            style="background-color: <%= book.backgroundColor %>; text-align: center;">
+        <div style="background-color: <%= book.backgroundColor %>; text-align: center;">
             <h1 class="book__title">
                 <%= book.title %>
             </h1>
@@ -14,17 +13,10 @@
             </h2>
         </div>
         <br/>
-        <p>
-            <%= book.description %>
-        </p>
-        </div>
+        <p><%= book.description %></p>
         <br/>
-            <p><b>Genre: </b> 
-                <%= book.genre %></p> <br/>
-                <p><b>Page Count:</b>
-                <%= book.pageCount %>
-            </p>
-        </div>
+        <p><b>Genre: </b><%= book.genre %></p><br/>
+        <p><b>Page Count:</b><%= book.pageCount %></p>
         <div class="actions">
             <% if (isAuthenticated) { %>
                 <%- include('../includes/add-to-tote.ejs', {book: book}) %>

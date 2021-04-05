@@ -416,39 +416,6 @@ a {
   color: #E7D7C1;
 }
 
-.orders {
-  list-style: none;
-  padding: 0;
-  margin: 0;
-}
-.orders__item {
-  box-shadow: 0 2px 8px rgba(0, 0, 0, 0.26);
-  padding: 1rem;
-  margin-bottom: 1rem;
-  background: #C7AE91;
-  border-radius: 0.5rem;
-}
-.orders__item h1 {
-  margin: 0;
-  font-size: 1rem;
-  color: #362A1B;
-}
-.orders__item h1 a {
-  color: #1B150E;
-}
-.orders__books {
-  list-style: none;
-  margin: 0;
-  padding: 0;
-}
-.orders__books-item {
-  margin-top: 0.5rem;
-  padding: 0.5rem;
-  border: 1px solid #1B150E;
-  color: #362A1B;
-  border-radius: 0.5rem;
-}
-
 .book-form {
   width: 20rem;
   max-width: 90%;
@@ -546,14 +513,15 @@ a {
 }
 
 .btn.danger {
-  color: red;
-  border-color: red;
+  background: red;
+  color: white;
 }
 
 .btn.danger:hover,
 .btn.danger:active {
-  background: red;
-  color: white;
+  color: red;
+  border-color: red;
+  background-color: white;
 }
 
 .user-message {

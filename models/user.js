@@ -33,6 +33,9 @@ const userSchema = new Schema({
 });
 
 userSchema.methods.addToTote = function(book) {
+  if(book.inStock == 0){
+    return this.save();
+  }
   const toteBookIndex = this.tote.items.findIndex(cp => {
     return cp.bookId.toString() === book._id.toString();
   });

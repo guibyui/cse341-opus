@@ -53,9 +53,6 @@
             <li class="nav__list-item <%= path === '/tote' ? 'active' : '' %>">
                 <a href="/tote">Your Tote</a>
             </li>
-            <li class="nav__list-item <%= path === '/orders' ? 'active' : '' %>">
-                <a href="/orders">Orders</a>
-            </li>
             <% if (isAdmin) { %>
                 <li class="nav__list-item <%= path === '/admin/add-book' ? 'active' : '' %>">
                     <a href="/admin/add-book">Add Book

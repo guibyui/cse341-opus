@@ -5,7 +5,6 @@ const mongoose = require('mongoose');
 const PDFDocument = require('pdfkit');
 
 const Book = require('../models/book');
-const Order = require('../models/order');
 
 const ITEMS_PER_PAGE = 10;
 
@@ -103,7 +102,8 @@ exports.postTote = (req, res, next) => {
   const prodId = req.body.bookId;
   Book.findById(prodId)
     .then(book => {
-      return req.user.addToTote(book);
+      req.user.addToTote(book)
+      book.removeStock();
     })
     .then(result => {
       console.log(result);
@@ -118,9 +118,13 @@ exports.postTote = (req, res, next) => {
 
 exports.postToteDeleteBook = (req, res, next) => {
   const prodId = req.body.bookId;
-  req.user
-    .removeFromTote(prodId)
+  Book.findById(prodId)
+    .then(book => {
+      req.user.removeFromTote(prodId)
+      book.addStock();
+    })
     .then(result => {
+      console.log(result);
       res.redirect('/tote');
     })
     .catch(err => {
@@ -128,100 +132,4 @@ exports.postToteDeleteBook = (req, res, next) => {
       error.httpStatusCode = 500;
       return next(error);
     });
-};
-
-exports.postOrder = (req, res, next) => {
-  req.user
-    .populate('tote.items.bookId')
-    .execPopulate()
-    .then(user => {
-      const books = user.tote.items.map(i => {
-        return { quantity: i.quantity, book: { ...i.bookId._doc } };
-      });
-      const order = new Order({
-        user: {
-          email: req.user.email,
-          userId: req.user
-        },
-        books: books
-      });
-      return order.save();
-    })
-    .then(result => {
-      return req.user.clearTote();
-    })
-    .then(() => {
-      res.redirect('/orders');
-    })
-    .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    });
-};
-
-exports.getOrders = (req, res, next) => {
-  Order.find({ 'user.userId': req.user._id })
-    .then(orders => {
-      res.render('shop/orders', {
-        path: '/orders',
-        pageTitle: 'Your Orders',
-        orders: orders
-      });
-    })
-    .catch(err => {
-      const error = new Error(err);
-      error.httpStatusCode = 500;
-      return next(error);
-    });
-};
-
-exports.getInvoice = (req, res, next) => {
-  const orderId = req.params.orderId;
-  Order.findById(orderId)
-    .then(order => {
-      if (!order) {
-        return next(new Error('No order found.'));
-      }
-      if (order.user.userId.toString() !== req.user._id.toString()) {
-        return next(new Error('Unauthorized'));
-      }
-      const invoiceName = 'invoice-' + orderId + '.pdf';
-      const invoicePath = path.join('data', 'invoices', invoiceName);
-
-      const pdfDoc = new PDFDocument();
-      res.setHeader('Content-Type', 'application/pdf');
-      res.setHeader(
-        'Content-Disposition',
-        'inline; filename="' + invoiceName + '"'
-      );
-      pdfDoc.pipe(fs.createWriteStream(invoicePath));
-      pdfDoc.pipe(res);
-
-      pdfDoc.fontSize(26).text('Invoice', {
-        underline: true
-      });
-      pdfDoc.text('-----------------------');
-      let totalPrice = 0;
-      order.books.forEach(prod => {
-        totalPrice += prod.quantity * prod.book.price;
-        let [month, date, year]    = new Date().toLocaleDateString("en-US").split("/")
-        pdfDoc
-          .fontSize(14)
-          .text(
-            month + " " + date + " " + year + " " + 
-            prod.book.title +
-              ' - ' +
-              prod.quantity +
-              ' x ' +
-              '$' +
-              prod.book.price
-          );
-      });
-      pdfDoc.text('---');
-      pdfDoc.fontSize(20).text('Total Price: $' + totalPrice);
-
-      pdfDoc.end();
-    })
-    .catch(err => next(err));
 };

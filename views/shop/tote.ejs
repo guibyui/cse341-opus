@@ -13,18 +13,11 @@
                             <form action="/tote-delete-item" method="POST">
                                 <input type="hidden" value="<%= p.bookId._id %>" name="bookId">
                                 <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                                <button class="btn danger" type="submit">Delete</button>
+                                <button class="btn danger" type="submit">Return Book</button>
                             </form>
                         </li>
                     <% }) %>
                 </ul>
-                <hr>
-                <div class="centered">
-                    <form action="/create-order" method="POST">
-                        <input type="hidden" name="_csrf" value="<%= csrfToken %>">
-                        <button type="submit" class="btn">Order Now!</button>
-                    </form>
-                </div>
                 
             <% } else { %>
                 <h1>No Books in Tote!</h1>

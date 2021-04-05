@@ -594,6 +594,17 @@ a {
   width: 70%;
 }
 
+.newsletter {
+  display: flex;
+  justify-content: center;
+  margin-top: 1rem;
+
+}
+
+.newsletter label {
+  margin-right: 5px;
+}
+
 @media screen and (min-width: 40rem) {
   body {
     width: 90%;

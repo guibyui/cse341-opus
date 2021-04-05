@@ -1,49 +1,26 @@
 <%- include('../includes/head.ejs') %>
-    </head>
-    <body>
-        <%- include('../includes/navigation.ejs') %>
-        <main>
-            <div class="grid">
-                <section class="card">
-                    <acticle class="book">
-                        <div class="back" style="background: linear-gradient(90deg, black 0%, black 2%, <%= book.backgroundColor %> 3%, <%= book.backgroundColor %> 5%, black 7%, <%= book.backgroundColor %> 13%, <%= book.backgroundColor %> 100%);"></div>
-                        <div class="page6"></div>
-                        <div class="page5"></div>
-                        <div class="page4"></div>
-                        <div class="page4-info">
-                            <h1>Description:</h1>
-                            <p>
-                                <%= book.description %>
-                            </p>
-                        </div>
-                        <div class="page3"></div>
-                        <div class="page3-info">
-                            <h1>Genre:</h1>
-                            <p>
-                                <%= book.genre %>
-                            </p>
-                            <h1>Page Count:</h1>
-                            <p>
-                                <%= book.pageCount %>
-                            </p>
-                        </div>
-                        <div class="page2"></div>
-                        <div class="page1"></div>
-                        <div class="front" style="background: linear-gradient(90deg, black 0%, black 2%, <%= book.backgroundColor %> 3%, <%= book.backgroundColor %> 5%, black 7%, <%= book.backgroundColor %> 13%, <%= book.backgroundColor %> 100%);"> 
-                            <h1 class="book__title">
-                                <%= book.title %>
-                            </h1>
-                            <h2 class="book__author">
-                                <%= book.author %>
-                            </h2>
-                        </div>
-                    </acticle>
-                    <div class="actions">
-                        <% if (isAuthenticated) { %>
-                            <%- include('../includes/add-to-tote.ejs', {book: book}) %>
-                        <% } %>
-                    </div>
-                </section>
-            </div>
-        </main>
-        <%- include('../includes/end.ejs') %>
+</head>
+
+<body>
+    <%- include('../includes/navigation.ejs') %>
+    <main>
+        <div style="background-color: <%= book.backgroundColor %>; text-align: center;">
+            <h1 class="book__title">
+                <%= book.title %>
+            </h1>
+            <h2 class="book__author">
+                By <%= book.author %>
+            </h2>
+        </div>
+        <br/>
+        <p><%= book.description %></p>
+        <br/>
+        <p><b>Genre: </b><%= book.genre %></p><br/>
+        <p><b>Page Count: </b><%= book.pageCount %></p>
+        <div class="actions">
+            <% if (isAuthenticated) { %>
+                <%- include('../includes/add-to-tote.ejs', {book: book}) %>
+                    <% } %>
+        </div>
+    </main>
+    <%- include('../includes/end.ejs') %>

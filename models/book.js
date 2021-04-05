@@ -40,4 +40,17 @@ const bookSchema = new Schema({
   }
 });
 
+bookSchema.methods.removeStock = function(num = 1) {
+  this.inStock -= num;
+  if (this.inStock < 0) {
+    this.inStock = 0;
+  }
+  return this.save();
+};
+
+bookSchema.methods.addStock = function(num = 1) {
+  this.inStock += num;
+  return this.save();
+};
+
 module.exports = mongoose.model('Book', bookSchema);

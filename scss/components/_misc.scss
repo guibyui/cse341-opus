@@ -32,14 +32,15 @@
 }
 
 .btn.danger {
-    color: red;
-    border-color: red;
+    background: red;
+    color: white;
 }
 
 .btn.danger:hover,
 .btn.danger:active {
-    background: red;
-    color: white;
+    color: red;
+    border-color: red;
+    background-color: white;
 }
 
 .user-message {

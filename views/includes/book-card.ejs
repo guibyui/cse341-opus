@@ -5,31 +5,38 @@
         <div class="page5"></div>
         <div class="page4"></div>
         <div class="page4-info">
-            <h1>Description:</h1>
+            <h2>Description:</h2>
             <p>
                 <%= book.description %>
             </p>
         </div>
         <div class="page3"></div>
         <div class="page3-info">
-            <h1>Genre:</h1>
+            <h2>Genre:</h2>
             <p>
                 <%= book.genre %>
             </p>
-            <h1>Page Count:</h1>
+            <h2>Page Count:</h2>
             <p>
                 <%= book.pageCount %>
+            </p>
+            <h2>In Stock</h2>
+            <p> <% if (book.inStock != 0) { %>
+                    <%= book.inStock %>
+                <% } else { %>
+                    Sorry all books are checked out!
+                <% } %>
             </p>
         </div>
         <div class="page2"></div>
         <div class="page1"></div>
         <div class="front" style="background: linear-gradient(90deg, black 0%, black 2%, <%= book.backgroundColor %> 3%, <%= book.backgroundColor %> 5%, black 7%, <%= book.backgroundColor %> 13%, <%= book.backgroundColor %> 100%);"> 
-            <h1 class="book__title">
+            <h2 class="book__title">
                 <%= book.title %>
-            </h1>
-            <h2 class="book__author">
-                <%= book.author %>
             </h2>
+            <h3 class="book__author">
+                <%= book.author %>
+            </h3>
         </div>
     </acticle>
     <div class="actions">

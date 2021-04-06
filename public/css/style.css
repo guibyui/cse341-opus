@@ -57,7 +57,7 @@ a {
 }
 .header-login__list {
   position: absolute;
-  right: 1.5rem;
+  right: 0.5rem;
   list-style: none;
 }
 
@@ -238,6 +238,10 @@ a {
   transform-origin: left center;
 }
 
+.page4-info p {
+  display: none;
+}
+
 .page1,
 .page2,
 .page3,
@@ -304,6 +308,7 @@ a {
     text-align: center;
   }
   .page4-info p {
+    display: inline;
     max-height: 212px;
     overflow: hidden;
     margin: 0.5rem 0 0.5rem 1rem;
@@ -364,6 +369,7 @@ a {
   }
 }
 #welcome {
+  width: 100%;
   text-align: center;
   background-image: url("/images/library.svg");
   height: 200px;
@@ -492,7 +498,7 @@ a {
   text-decoration: none;
   color: #1B150E;
   background: #C7AE91;
-  width: 113px;
+  width: 100px;
   height: 42px;
   border: none;
   cursor: pointer;

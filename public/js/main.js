@@ -25,3 +25,34 @@ function toggleMenu() {
         showMenu = false;
     }
 }
+
+const newsEmail = document.querySelector('#newsEmail');
+const _csrf = document.querySelector('#_csrf');
+
+function subscribe() {
+    const data = { email: newsEmail.value };
+    console.log(data);
+
+    fetch('/subscribe', {
+        credentials: 'same-origin',
+        method: 'POST',
+        headers: {
+            'CSRF-TOKEN': _csrf.value,
+            'Accept': 'application/json',
+            'Content-Type': 'application/json',
+        },
+        body: JSON.stringify(data)
+    })
+    .then((response) => {
+        return response.json();
+    })
+    .then((data) => {
+        console.log(data);
+        if (data.error) {
+            alert("Subscription Unsuccessful");
+        } else {
+            alert('Thank you for subscribing to our weekly newsletter!');
+            newsEmail.value = '';
+        }
+    })
+}

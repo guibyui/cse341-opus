@@ -9,7 +9,13 @@
     </div>
     <div class="footer-card">
         <h3 class="footer-card__heading">Weekly Newsletter</h3>
-        <p class="footer-card__info"><a href="#">Lorem ipsum dolor, sit amet consectetur adipisicing elit. Officia, fugit!</a></p>
+        <div class="newsletter">
+            <label for="newsletter"> Your Email: </label>
+            <input class="footer-card__info" placeholder="email" id="newsEmail">
+            <div class="break"></div>
+            <input type="button" class="btn" value="Subscribe Now" onclick="subscribe();">
+            <input type="hidden" id="_csrf" value="<%= csrfToken %>">
+        </div>
     </div>
     <div class="footer-card">
         <h3 class="footer-card__heading">Hours of Operation</h3>

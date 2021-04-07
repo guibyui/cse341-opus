@@ -1,4 +1,5 @@
 const crypto = require('crypto');
+const Subscription = require('../models/subscription');
 
 const bcrypt = require('bcryptjs');
 const { validationResult } = require('express-validator');
@@ -157,13 +158,13 @@ exports.postSignup = (req, res, next) => {
         html: '<h1>You have successfully signed up!</h1>'
       };
       
-      // transporter.sendMail(mailOptions, function(error, info){
-      //   if (error) {
-      //     console.log(error);
-      //   } else {
-      //     console.log('Email sent: ' + info.response);
-      //   }
-      // });
+      transporter.sendMail(mailOptions, function(error, info){
+        if (error) {
+          console.log(error);
+        } else {
+          console.log('Email sent: ' + info.response);
+        }
+      });
       res.redirect('/login');
     })
     .catch(err => {
@@ -285,4 +286,36 @@ exports.postNewPassword = (req, res, next) => {
       error.httpStatusCode = 500;
       return next(error);
     });
+};
+
+exports.postSubscribe = (req, res, next) => {
+  const email = req.body.email;
+
+  Subscription.findOneOrCreate('Weekly Newsletter')
+  .then((newsletter) => {
+    if(email && !newsletter.emails.includes(email)) {
+      newsletter.addEmail(email);
+    }
+
+    const mailOptions = {
+      from: 'tripplee@gmail.com',
+      to: email,
+      subject: 'Subscription Successful!',
+      html: '<h1>Thank you for subscribing to our weekly newsletter :)</h1>'
+    };
+    
+    transporter.sendMail(mailOptions, function(error, info) {
+      if (error) {
+        console.log(error);
+        res.end(JSON.stringify({ error: error }))
+      } else {
+        console.log('Email sent: ' + info.response);
+        res.end(JSON.stringify({ message: 'email was successful.' }))
+      }
+    })
+  })
+  .catch((error) => {
+    console.log(error)
+    res.end(JSON.stringify({ error: error }))
+  });
 };

@@ -270,6 +270,26 @@ a {
   padding-top: 1rem;
 }
 
+.newsletter {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  margin-top: 1rem;
+}
+
+.newsletter label {
+  margin-right: 5px;
+}
+
+.newsletter .break {
+  flex-basis: 100%;
+  height: 10px;
+}
+
+.newsletter [type=button] {
+  flex-basis: 50%;
+}
+
 @media screen and (min-width: 40rem) {
   .card {
     justify-content: center;
